@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Metal+Mania&display=swap" rel="stylesheet">
+    <title>DJ Dash</title>
+</head>
+
+<body>
+    <h1>Safety Hawk</h1>
+    <div class="wrapper">
+        <div class="container">
+
+            <form action="/" method="post">
+                <label for="playing">Playing</label><br>
+                <input type="text" name="playing" id="playing" <% if (typeof playing!= 'undefined') { %>
+                    value="<%= playing %>" <% } %>>
+                <button type="submit">Submit</button>
+            </form>
+            <form action="/message" method="post">
+                <label for="message">Send a message.</label><br>
+                <input type="text" name="message" id="message">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div class="requests">
+
+            <h5>Requests</h5>
+            <ul><% if (typeof requests != 'undefined') { %>
+                <% requests.forEach(title => { %>
+                <div><%= title %></div> <a href="/delete:<%=title%>"><button>Delete</button></a>
+                <a href="/reject:<%=title%>"><button>Reject</button></a>
+                <a href="/none:<%=title%>"><button>Not Available</button></a>
+                <% }) %>
+                <% } %></ul>
+        </div>
+        <div class="playlist">
+
+            <h5>Set List</h5>
+            <ul> <% if (typeof set != 'undefined') { %>
+                <% set.forEach(title => { %>
+                <li><a href="/whoops:<%=title%>"><%=title%></a></li>
+                <% }) %>
+                <% } %>
+            </ul>
+        </div>
+        <!-- <div class="footer"><img src="/images/tape.png" alt="safety ribbon"></div> -->
+    </div>
+</body>
+
+</html>
